@@ -7,6 +7,7 @@ import Events from './components/Events';
 
 //styles /css
 import './App.css';
+import Challenge from './components/Challenge';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
     <TemplateExpressions />
     <MyComponents />
     <Events />
+    <Challenge />
     </div>
   );
 }
