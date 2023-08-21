@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import Mycomponent from './components/Mycomponent'
+import Title from "./components/Title"
 
 function App() {
   const n = 15
   const [name] = useState("Naiara")
+  const redTitle = true
+
   return (
     <>
     {/*CSS GLOBAL */}
@@ -25,6 +28,13 @@ function App() {
         : null }>
         Test nome
       </h2>
+    {/* Classe Dinamica */}
+    <h2 className={redTitle ? "red-title" : "title"}> 
+      Esse título vai ter classe dinâmica
+    </h2>
+    {/* CSS Modules */}
+    <Title />
+    <h2 className='my_title'>Testando</h2>
     </>
   )
 }
