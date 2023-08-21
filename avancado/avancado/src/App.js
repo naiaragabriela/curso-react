@@ -8,6 +8,9 @@ import ShowUsername from './components/ShowUsername';
 import CarDetails from './components/CarDetails';
 import Fragment from './components/Fragment';
 import Container from './components/Container';
+import ExecuteFunction from './components/ExecuteFunction';
+import Message from './components/Message';
+import ChangeMessageState from './components/ChangeMessageState';
 
 function App() {
   //const name = "Naiara";
@@ -21,6 +24,12 @@ function App() {
 
   function showMessage() {
     console.log("Evento do componente Pai")
+  };
+
+  const [message, setMessage] = useState("");
+
+  const handleMessage = (msg) => {
+    setMessage(msg);
   };
 
   return (
@@ -46,6 +55,7 @@ function App() {
       {/*loop em array de objetos */}
       {cars.map((car) => (
         <CarDetails 
+          key={car.id}
           brand={car.brand} 
           color={car.color} 
           km={car.km} 
@@ -62,6 +72,10 @@ function App() {
         <h5>Testando o container</h5> 
       </Container>
       {/*executar função  */}
+      <ExecuteFunction myFunction={showMessage} />
+      {/*State Lift */}
+      <Message msg={message}/>
+      <ChangeMessageState handleMessage={handleMessage} />
       </div>
     </div>
   );
