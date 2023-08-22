@@ -1,0 +1,18 @@
+.App {
+    text-align: center;
+    
+}
+
+.car-container {
+    display: flex;
+    justify-content: center;
+}
+
+.car-container div {
+    margin: 50px;
+}
+
+h1 {
+    color: gold;
+    background-color: black;
+}
