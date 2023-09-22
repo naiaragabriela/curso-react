@@ -123,7 +123,7 @@ function App() {
       //restart game with new word
       startGame();
     }
-  }, [letters, startGame]);
+  }, [guessedLetters]);
 
   // restarts the game
   const retry = () => {
