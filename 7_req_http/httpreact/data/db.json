@@ -1,19 +1,44 @@
 {
-    "product": [
-        {
-            "id": 1,
-            "name": "Camisa",
-            "price": 20.55
-        },
-        {
-            "id": 2,
-            "name": "Calça",
-            "price": 60
-        },
-        {
-            "id": 3,
-            "name": "Boné",
-            "price": 10.35
-        }
-    ]
+  "product": [
+    {
+      "id": 1,
+      "name": "Camisa",
+      "price": 20.55
+    },
+    {
+      "id": 2,
+      "name": "Calça",
+      "price": 60
+    },
+    {
+      "id": 3,
+      "name": "Boné",
+      "price": 10.35
+    },
+    {
+      "name": "teste",
+      "price": "2",
+      "id": 4
+    },
+    {
+      "name": "capa-chuva",
+      "price": "10",
+      "id": 5
+    },
+    {
+      "name": "teclado",
+      "price": "110",
+      "id": 6
+    },
+    {
+      "name": "pc",
+      "price": "1000",
+      "id": 7
+    },
+    {
+      "name": "cadeira",
+      "price": "200",
+      "id": 8
+    }
+  ]
 }
