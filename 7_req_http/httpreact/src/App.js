@@ -1,81 +1,105 @@
-import './App.css';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-//4-Custom hook
-import { useFetch } from './hooks/useFetch';
+// 4 - custom hook
+import { useFetch } from "./hooks/useFetch";
 
-const url = "http://localhost:3000/product/";
+// 8 - errar url para mostrar erro
+// "http://localhost:3001/products"
+const url = "http://localhost:3000/products";
 
 function App() {
-  const [product, setProduct] = useState([]);
-//4 - Custom hook
-  const { data: items, httpConfig } = useFetch(url);
+  const [products, setProducts] = useState([]);
 
+  // 4 - custom hook e 5 - refactor post
+  const { data: items, httpConfig, loading, error } = useFetch(url);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
-  //1- resgatando dados (chamada assincrona)
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await fetch(url);
-  //     const data = await response.json();
-  //     setProduct(data);
-  //   };
-  //   fetchData();
+  // 1 - resgatando dados
+  // useEffect(async () => {
+  //   const res = await fetch("http://localhost:3000/products");
+
+  //   const data = await res.json();
+
+  //   setProducts(data);
   // }, []);
-  
-  //2- Adição de produtos
+
+  // 2 - add product
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const product= {
+
+    const product = {
       name,
-      price
+      price,
     };
-    
-    // //criando a requisição
-    //const res = await fetch(url, {
-     //method: "POST",
-      //headers: {
-        //"Content-Type": "application/json"
-      //},
-      //body: JSON.stringify(product)
-    //});
 
-    //const addedProduct = await res.json();
-  // //3-carregamento dinâmico
-  //setProduct((prevProducts) => [...prevProducts, addedProduct]);
+    // const res = await fetch("http://localhost:3000/products", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(product),
+    // });
 
-  // 5- refatorando o Post
-  httpConfig(product, "POST");
+    // const addedProduct = await res.json();
 
-  setName("");
-  setPrice("");
-   
+    // 3 - carregamento dinâmico
+    // setProducts((prevProducts) => [...prevProducts, addedProduct]);
+
+    // 5 - refatorar post
+    httpConfig(product, "POST");
+
+    setName("");
+    setPrice("");
+  };
+
+  /* 9 - desafio */
+  const handleRemove = (id) => {
+    httpConfig(id, "DELETE");
   };
 
   return (
     <div className="App">
       <h1>Lista de produtos</h1>
+      {/* 6 - state de loading */}
+      {loading && <p>Carregando dados...</p>}
+      {error && <p>{error}</p>}
       <ul>
-        {items && items.map((product) => (
-          <li key={product.id}>
-            {product.name} - R$: {product.price}
-          </li>
-        ))}
+        {items &&
+          items.map((product) => (
+            <li key={product.id}>
+              {product.name} - R$: {product.price}
+              {/* 9 - desafio */}
+              <button onClick={() => handleRemove(product.id)}>Excluir</button>
+            </li>
+          ))}
       </ul>
+
       <div className="add-product">
+        <p>Adicionar produto:</p>
         <form onSubmit={handleSubmit}>
           <label>
             Nome:
-            <input type="text" value={name} name="name" onChange={(e)=> setName(e.target.value)} />
+            <input
+              type="text"
+              value={name}
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+            />
           </label>
           <label>
             Preço:
-            <input type="number" value={price} name="price" onChange={(e)=> setPrice(e.target.value)} />
+            <input
+              type="number"
+              value={price}
+              name="price"
+              onChange={(e) => setPrice(e.target.value)}
+            />
           </label>
-          <input type="submit" value="CRIAR"/>
+          {/* 7 - state de loading no post */}
+          {loading ? <p>Aguarde!</p> : <input type="submit" value="Criar" />}
         </form>
       </div>
     </div>

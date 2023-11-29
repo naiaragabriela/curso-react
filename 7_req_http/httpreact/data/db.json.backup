@@ -14,16 +14,6 @@
       "id": 3,
       "name": "Boné aba reta",
       "price": 29.9
-    },
-    {
-      "name": "teste",
-      "price": "1",
-      "id": 4
-    },
-    {
-      "name": "capa-chuva",
-      "price": "20",
-      "id": 5
     }
   ]
 }
