@@ -31,6 +31,7 @@ function App() {
         <Route path="/products/:id" element={<Product />} />
         {/*7- no match route */}
         <Route path="*" element={<NotFound />} />
+        {/* */}
       </Routes>
      </BrowserRouter>
     </div>
