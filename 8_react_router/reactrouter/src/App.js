@@ -13,6 +13,8 @@ import About from './pages/About';
 import Product from './pages/Product';
 import Info from './pages/Info';
 import NotFound from './pages/NotFound';
+import SearchForm from './components/SearchForm';
+import Search from './pages/Search';
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
      <BrowserRouter>
      {/*2 - Links com react router*/}
       <Navbar />
+      {/*9 - search */}
+      <SearchForm />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -29,6 +33,8 @@ function App() {
         <Route path="/products/:id/info" element={<Info />} />
         {/* 4- Rota Dinâmica */ }
         <Route path="/products/:id" element={<Product />} />
+        {/*9- search*/}
+        <Route path="/search" element={<Search />} />
         {/*7- no match route */}
         <Route path="*" element={<NotFound />} />
         {/* */}
