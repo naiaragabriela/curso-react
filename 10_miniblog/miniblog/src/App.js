@@ -1,21 +1,40 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import About from './pages/About/About';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
+// mapeia a autenticacao do usuario
+import { onAuthStateChanged } from 'firebase/auth';
+// hooks 
+import { useState, useEffect } from 'react';
+import { useAuthentication } from './hooks/useAuthentication';
 
 // context
 import { AuthProvider } from './context/AuthContext';
 
 // pages 
+import Footer from './components/Footer';
+import Register from './pages/Register/Register';
+import Login from './pages/Login/Login';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
+import NavBar from './components/NavBar';
+import { use } from 'react';
 
 function App() {
+  const [user, setUser] = useState(undefined);
+  const { auth } = useAuthentication();
+  const loadingUser = user === undefined;
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+  }, [auth]);
+  if(loadingUser) {
+    return <p>Carregando...</p>;
+  };
+
   return (
     <div className="App">
-     <AuthProvider>
+     <AuthProvider value ={{ user }}>
      <BrowserRouter>
      <NavBar />
      <div className='container'>
