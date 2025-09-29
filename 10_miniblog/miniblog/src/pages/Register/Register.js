@@ -1,5 +1,5 @@
-import styles from './Register.modules.css';
-import {useState, usEffect, useEffect} from 'react'
+import styles from './Register.module.css';
+import { useState, useEffect } from 'react'
 import { useAuthentication } from '../../hooks/useAuthentication';
 
 const Register = () => {
