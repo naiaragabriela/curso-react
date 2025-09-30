@@ -1,21 +1,20 @@
+import { useAuthentication } from '../../hooks/useAuthentication';
 import styles from './Login.module.css';
 import { useState, useEffect } from 'react'
-import { useAuthentication } from '../../hooks/useAuthentication';
+
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
   
-    const { createUser, error: authError, loading } = useAuthentication();
+    const { login, error: authError, loading } = useAuthentication();
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      //quando eu envio o form, o valor do error tem que ser zerado;
       setError("");
       const user = { email, password};
-      const resp = await createUser(user);
-      console.log(resp);
+      const resp = await login(user);
     };
   
     useEffect(() => {
